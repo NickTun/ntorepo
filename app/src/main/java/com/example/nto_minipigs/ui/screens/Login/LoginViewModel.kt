@@ -17,7 +17,11 @@ class LoginViewModel :ViewModel() {
                 val auth = Auth(login, password)
                 val response = serviceApi.login(auth)
                 if(response.isSuccessful) {
-                    dataStore.updateToken(response.body()?.token.toString())
+//                    dataStore.updateToken(response.body()?.token.toString())
+                    dataStore.updateLogin(login)
+                    dataStore.updatePassword(password)
+                    Log.d("yenis", (response.body()?.admin == true).toString())
+                    dataStore.updateAdmin(response.body()?.admin == true)
 //                    dataStore.updateToken("")
                     func()
                 }

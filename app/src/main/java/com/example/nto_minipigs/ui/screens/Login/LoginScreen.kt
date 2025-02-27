@@ -1,5 +1,6 @@
 package com.example.nto_minipigs.ui.screens.Login
 
+import androidx.annotation.FontRes
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
@@ -19,6 +20,9 @@ import com.example.nto_minipigs.ui.theme.Nto_minipigsTheme
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
+import androidx.compose.ui.text.font.FontFamily
+import androidx.compose.ui.text.font.FontStyle
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import com.example.nto_minipigs.UserData
 
@@ -35,6 +39,9 @@ fun LoginScreen(onNavigateToMain: () -> Unit, viewModel: LoginViewModel, dataSto
                 Text(
                     text = "MiniPigs",
                     style = MaterialTheme.typography.displayMedium,
+                    fontWeight = FontWeight.ExtraBold,
+                    fontStyle = FontStyle.Italic,
+                    color = MaterialTheme.colorScheme.primary,
                     modifier = Modifier.padding(bottom = 36.dp)
                 )
 
@@ -53,7 +60,7 @@ fun LoginScreen(onNavigateToMain: () -> Unit, viewModel: LoginViewModel, dataSto
                     value = password,
                     onValueChange = { password = it },
                     label = { Text("Password") },
-                    modifier = Modifier.padding(bottom = 12.dp),
+                    modifier = Modifier.padding(bottom = 16.dp),
                     shape = RoundedCornerShape(12.dp),
                 )
 

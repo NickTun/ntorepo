@@ -7,5 +7,6 @@ data class User(
     val password: String,
     val name: String,
     val photo: String,
-    val position: String
+    val position: String,
+    val entries: ArrayList<Entry>
 )

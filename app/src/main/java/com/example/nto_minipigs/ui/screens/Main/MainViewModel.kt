@@ -1,14 +1,13 @@
 package com.example.nto_minipigs.ui.screens.Main
 
-import android.util.Log
+import RetrofitClient
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.nto_minipigs.Retrofit.Models.Auth
 import com.example.nto_minipigs.Retrofit.Models.User
-import com.example.nto_minipigs.UserData
 import kotlinx.coroutines.launch
+import okhttp3.Credentials
 
 class MainViewModel: ViewModel() {
     private val serviceApi  = RetrofitClient.apiService
@@ -16,13 +15,14 @@ class MainViewModel: ViewModel() {
     private val _data = MutableLiveData<NetworkResponse<User>>()
     val data : LiveData<NetworkResponse<User>> = _data
 
-    fun Fetch(token: String?) {
+    fun Fetch(login: String?, password: String?) {
         _data.value = NetworkResponse.Loading
+        var basic = Credentials.basic(login.toString(), password.toString())
 
         viewModelScope.launch {
-            if(token != null) {
+            if(basic != "") {
                 try {
-                    val response = serviceApi.info(token)
+                    val response = serviceApi.info(basic)
                     if(response.isSuccessful) {
                         response.body()?.let {
                             _data.value = NetworkResponse.Success(it)
